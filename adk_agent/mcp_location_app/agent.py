@@ -10,7 +10,7 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY", "NOT SET")
 os.environ["GROQ_API_KEY"] = GROQ_API_KEY
 
 print(f"=== AGENT STARTING ===", flush=True)
-print(f"GROQ KEY starts with: {GROQ_API_KEY[:10]}...", flush=True)
+print(f"GROQ KEY: {GROQ_API_KEY[:10]}...", flush=True)
 
 location_toolset = tools.get_location_mcp_toolset()
 
@@ -24,10 +24,9 @@ Always use your tools:
 """
 
 root_agent = LlmAgent(
-    model=LiteLlm(model="groq/llama-3.3-70b-versatile"),
+    model=LiteLlm(model="groq/llama-3.1-8b-instant"),
     name="business_location_finder_agent",
     instruction=SYSTEM_INSTRUCTION,
     tools=[location_toolset],
 )
-
-print(f"=== AGENT READY ===", flush=True)
+print("=== AGENT READY ===", flush=True)
